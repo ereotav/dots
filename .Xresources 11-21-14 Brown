@@ -1,0 +1,45 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+URxvt*transparent: false
+URxvt*shading: 5
+URxvt*scrollBar: False
+URxvt*saveLines: 1000
+rxvt*modifier: alt
+!URxvt.font: xft:DejaVu Sans Mono:regular:size=8
+URxvt.font: xft:Clean:size=9 
+
+! terminal colors  Main color followed by high intensity bold/ blink version ------------------------------------------------------------
+
+*background: #090602
+! Main text
+*foreground: #776233
+! Black 
+*color0:  #073642
+*color8:  #073642
+! Red
+*color1:  #990000
+*color9:  #990000
+! Green
+*color2:  #347840
+! User terminal name
+*color10: #347840
+! Yellow
+*color3:  #cca758
+*color11: #cca758
+! Blue
+*color4:  #344978
+*color12: #344978
+! Magenta
+*color5:  #78346b
+*color13: #78346b
+! Cyan 
+*color6:  #299e94
+*color14: #299e94
+! White
+*color7:  #e0d9c1
+*color15: #e0d9c1
