@@ -1,0 +1,138 @@
+# i3 config file
+# Use xev to get exact key names
+
+set $mod Mod4
+font pango:Clean 9
+floating_modifier $mod
+
+# terminal
+bindsym $mod+Return exec urxvt
+
+# kill focused window
+bindsym $mod+x kill
+
+focus_follows_mouse no
+
+# change window focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# move focused windown
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# split focus
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# toggle tiling / floating on focused window
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiled / floating windows
+bindsym $mod+space focus mode_toggle
+
+# switch workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the config file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# i3exit
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+	bindsym l exec --no-startup-id ~/scripts/i3exit lock, mode "default"
+	bindsym e exec --no-startup-id ~/scripts/i3exit logout, mode "default"
+	bindsym s exec --no-startup-id ~/scripts/i3exit suspend, mode "default"
+	bindsym h exec --no-startup-id ~/scripts/i3exit hibernate, mode "default"
+	bindsym r exec --no-startup-id ~/scripts/i3exit reboot, mode "default"
+	bindsym Shift+s exec --no-startup-id ~/scripts/i3exit shutdown, mode "default"
+	# close i3exit
+	bindsym Escape mode "default"
+}
+bindsym $mod+F12 mode "$mode_system"
+
+# resize window (you can also use the mouse)
+mode "resize" {
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	# close resize
+	bindsym Return mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# i3bar
+bar {
+		status_command conky -c /home/majin/.i3/conky
+		position top
+			colors {
+			background #090702
+			statusline #cca758
+			separator #090702
+			# colors           outline  background  number 
+			focused_workspace  #090702   #090702   #cca758
+			#active_workspace  #ee920e   #ee920e    #382d1c
+			inactive_workspace #090702   #090702   #4C5157
+			urgent_workspace   #990000   #990000    #ffffff
+		}
+}
+
+# window borders
+new_window pixel 3
+new_float pixel 3
+# border colors			border		background		text		indicator
+client.focused	   		#cca758	     #cca758	   #ffffff		 #4c5157
+client.unfocused  		#040902		 #040902	   #ffffff       #040902
+client.urgent	  		#990000		 #990000	   #ffffff		 #990000
+client.focused_inactive #040902 	 #040902 	   #ffffff		 #040902 
+#client.placeholder
+
+# window floats
+for_window [class="Gpicview"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [class="Gmrun"] floating enable
+
+# programs
+bindsym $mod+F2 exec gmrun
+bindsym $mod+w exec firefox
+bindsym $mod+f exec pcmanfm
+bindsym $mod+e exec geany
+bindsym $mod+Delete exec lxtask
+bindsym $mod+d exec dwb
+bindsym $mod+l exec luakit
+
+# music keybinds
+bindsym $mod+p exec amixer sset Master playback 5%+
+bindsym $mod+o exec amixer sset Master playback 5%-
+bindsym $mod+Shift+p exec ncmpcpp toggle
+bindsym $mod+Shift+period exec ncmpcpp next
+bindsym $mod+Shift+comma exec ncmpcpp prev
